@@ -3,14 +3,13 @@
 
 int main()
 {
-    int a,b,c,i;
+    int a,b,i;
     a = 1;
     printf("enter a number\n");
     scanf("%d",&b);
     for(i=1;i<=b;i++){
         a = a * i ;
     }
-    c = a ;
-    printf("Factorielle is %d",c);
+    printf("Factorielle is %d",a);
     return 0;
 }
