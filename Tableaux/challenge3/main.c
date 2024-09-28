@@ -3,19 +3,22 @@
 
 int main()
 {
-    int A,B;
+    int A,I;
+    float S;
     printf("le nombre d elements\n");
     scanf("%d",&A);
     float table[A];
 
-    for(B=0;B<A;B++){
+    for(I=0;I<A;I++){
         printf("enter elements\n");
-        scanf("%f",&table[B]);
+        scanf("%f",&table[I]);
     }
-    for(B=0;B<A;B++){
-        printf("element %d in table is %.f\n",B,table[B]);
+    S = 0;
+    for(I=0;I<A;I++){
+        S = S + table[I];
+    }
+        printf("Somme des elements %.2f\n",S);
 
-    }
 
 
     return 0;
