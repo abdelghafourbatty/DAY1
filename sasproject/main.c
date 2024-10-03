@@ -252,6 +252,7 @@ system("cls");
 void Statistiquesres(){
 int sum = 0;
 int avg = 0;
+int counter[3];
 int choice;
     printf("1. Calculer la moyenne d age des patients ayant reserve\n");
     printf("2. Afficher le nombre de patients par tranche d age\n");
@@ -266,7 +267,16 @@ int choice;
             avg = sum / bookCount ;
             printf(" la moyenne d age des patients ayant reserve %d\n",avg);
         }else if(choice == 2){
-
+            for (i = 0; i < bookCount; i++) {
+                    if(Age[i]>0 && Age[i]<=18)
+                    counter[0]++;
+                    else if(Age[i]>=19 && Age[i]<=35)
+                    counter[1]++;
+                    else if(Age[i]>=36 )
+                    counter[2]++;
+            }
+            printf("  0-18 ans : %d , 19-35 ans : %d , 36+ ans : %d\n",counter[0],counter[1],counter[2]);
+        }else if(choice == 3){
         }
 
 }while(choice!=1 && choice!=2 && choice!=3);
