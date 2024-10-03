@@ -260,12 +260,13 @@ int choice;
         printf("enter your choice: "); scanf("%d", &choice);
 
         if(choice == 1){
-            found = 0;
             for (i = 0; i < bookCount; i++) {
              sum += Age[i];
             }
             avg = sum / bookCount ;
             printf(" la moyenne d age des patients ayant reserve %d\n",avg);
+        }else if(choice == 2){
+
         }
 
 }while(choice!=1 && choice!=2 && choice!=3);
