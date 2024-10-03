@@ -14,7 +14,7 @@ int Age[100];
 char searchreservation[100];
 int referencech[100];
 int reference[100];
-int i,found,n,j;
+int i,found,n,j,choiceT;
 int bookCount = 0;
 int choice;
 char temp[100];
@@ -110,7 +110,7 @@ void newreservation(){
                     scanf("%s", Statu[bookCount]);
                     printf("Enter date: ");
                     scanf("%s", Date[bookCount]);
-                    printf("%d",reference[bookCount] +=1);
+                    printf("%d",reference[bookCount] =bookCount+1);
                     bookCount++;
                 } else
                     printf("Stock is full.\n");
@@ -181,35 +181,35 @@ void affichereservation(){
 // fonction of tri
 void trireservation(){
  system("cls");
-    int choice;
-    int n, j;
+    int choiceT;
+    int j;
 
     printf("1. Tri des reservations par Nom\n");
     printf("2. Tri des reservations par statut (valide, reporte, annule, traite).\n");
     do {
-        printf("enter your choice: "); scanf("%d", &choice);
+        printf("enter your choice: "); scanf("%d", &choiceT);
 
-        if(choice == 1){
-        for (j = i + 1; j < n; j++) {
+        if(choiceT == 1){
+                for (i= 0; i < bookCount; i++){
+        for (j = i + 1; j < bookCount; j++) {
             if (strcmp(Nom[i], Nom[j]) > 0) {
                 strcpy(temp, Nom[i]);
                 strcpy(Nom[i], Nom[j]);
                 strcpy(Nom[j], temp);
             }
         }
+                }
              for (i = 0; i < bookCount; i++)
                     printf("Nome : %s, prenome : %s, phone number : %s, age : %d, status : %s, date : %s\n",
                            Nom[i], Prenom[i], Telephone[i],Age, Statu[i],Date[i]);
         }
-}while(choice!=3);
+}while(choiceT!=1 && choiceT!=2);
 }
 // fonction of recherche
 void recherchereservation(){
 
 system("cls");
     int choice;
-    int n, j;
-
     printf("1. recherche par Nom\n");
     printf("2. recherche par reference unique\n");
     do {
@@ -250,7 +250,24 @@ system("cls");
 }
 // fonction of statistiques
 void Statistiquesres(){
+int sum = 0;
+int avg = 0;
+int choice;
+    printf("1. Calculer la moyenne d age des patients ayant reserve\n");
+    printf("2. Afficher le nombre de patients par tranche d age\n");
+    printf("3. Generer des statistiques pour connaître le nombre total de reservations par statut\n");
+    do {
+        printf("enter your choice: "); scanf("%d", &choice);
 
+        if(choice == 1){
+            found = 0;
+            for (i = 0; i < bookCount; i++) {
+             sum += Age[i];
+            }
+            avg = sum / bookCount ;
+            printf(" la moyenne d age des patients ayant reserve %d\n",avg);
+        }
 
+}while(choice!=1 && choice!=2 && choice!=3);
 }
 
