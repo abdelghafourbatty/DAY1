@@ -10,23 +10,23 @@ char Prenom[MAX_BOOKS][100];
 char Telephone[MAX_BOOKS][100];
 char Statu[MAX_BOOKS][100];
 char Date[MAX_BOOKS][100];
-int Age[MAX_BOOKS];
-char reference[100][100];
+int Age[100];
 char searchreservation[100];
-int i, found;
+int referencech[100];
+int reference[100];
+int i,found,n,j;
 int bookCount = 0;
-int compteur = 1;
 int choice;
 char temp[100];
 // fonctions section
 void choice_fon();
-void genererReference();
 void newreservation();
 void Modifiereservation();
 void supprimerreservation();
 void affichereservation();
 void trireservation();
 void recherchereservation();
+void Statistiquesres();
 
 int main()
 {
@@ -38,7 +38,6 @@ int main()
                 newreservation();
                 system("cls");
                 printf("reservation added successfully!\n");
-                printf("Reference : %s\n", reference);
                 break;
           case 2:
                 Modifiereservation();
@@ -58,6 +57,14 @@ int main()
                 system("cls");
                 trireservation();
                 break;
+        case 6:
+                system("cls");
+                recherchereservation();
+                break;
+        case 7:
+                system("cls");
+                Statistiquesres();
+                break;
 
 
 
@@ -76,7 +83,7 @@ void choice_fon()
     printf("Systeme de Gestion de reservation\n");
         printf("1. Ajouter une reservation\n");
         printf("2. Modifier une reservation\n");
-        printf("3. Supprimer une réservation\n");
+        printf("3. Supprimer une reservation\n");
         printf("4. Afficher les details dune reservation\n");
         printf("5. Tri des reservations\n");
         printf("6. Recherche des reservations\n");
@@ -84,11 +91,6 @@ void choice_fon()
         printf("8. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
-}
-// fonction of reference
-void genererReference(char *ref) {
-    sprintf(ref, "RES%04d", compteur);
-    compteur++;
 }
 
 // fonction of reservation
@@ -108,7 +110,7 @@ void newreservation(){
                     scanf("%s", Statu[bookCount]);
                     printf("Enter date: ");
                     scanf("%s", Date[bookCount]);
-                    genererReference(reference);
+                    printf("%d",reference[bookCount] +=1);
                     bookCount++;
                 } else
                     printf("Stock is full.\n");
@@ -170,8 +172,8 @@ void affichereservation(){
                 printf("No reservation available\n");
             } else
                 for (i = 0; i < bookCount; i++) {
-                    printf("Nome : %s, prenome : %s, phone number : %s, age : %d, status : %s, date : %s, reference : %s\n",
-                           Nom[i], Prenom[i], Telephone[i],Age, Statu[i],Date[i],reference[i]);
+                    printf("Nome : %s, prenome : %s, phone number : %s, age : %d, status : %s, date : %s, reference : %d\n",
+                           Nom[i], Prenom[i], Telephone[i],Age[i], Statu[i],Date[i],reference[i]);
                 }
 
 }
@@ -188,7 +190,6 @@ void trireservation(){
         printf("enter your choice: "); scanf("%d", &choice);
 
         if(choice == 1){
-            for (i = 0; i < n - 1; i++) {
         for (j = i + 1; j < n; j++) {
             if (strcmp(Nom[i], Nom[j]) > 0) {
                 strcpy(temp, Nom[i]);
@@ -196,12 +197,60 @@ void trireservation(){
                 strcpy(Nom[j], temp);
             }
         }
-    }
              for (i = 0; i < bookCount; i++)
-                    printf("Nome : %s, prenome : %s, phone number : %s, age : %d, status : %s, date : %s, reference : %s\n",
-                           Nom[i], Prenom[i], Telephone[i],Age, Statu[i],Date[i],reference[i]);
+                    printf("Nome : %s, prenome : %s, phone number : %s, age : %d, status : %s, date : %s\n",
+                           Nom[i], Prenom[i], Telephone[i],Age, Statu[i],Date[i]);
         }
-}while(choice!=1 && choice!=2);
+}while(choice!=3);
 }
 // fonction of recherche
-void recherchereservation(){}
+void recherchereservation(){
+
+system("cls");
+    int choice;
+    int n, j;
+
+    printf("1. recherche par Nom\n");
+    printf("2. recherche par reference unique\n");
+    do {
+        printf("enter your choice: "); scanf("%d", &choice);
+
+        if(choice == 1){
+        printf("Enter the name of the reservation: ");
+            scanf("%s", searchreservation);
+            found = 0;
+            for (i = 0; i < bookCount; i++) {
+                if (Nom[i][0] == searchreservation[0]) {
+                    printf("Nome : %s, prenome : %s, phone number : %s, age : %d, status : %s, date : %s\n",
+                           Nom[i], Prenom[i], Telephone[i],Age, Statu[i],Date[i]);
+                    found = 1;
+                    break;
+                }
+            }
+        }else if(choice == 2){
+            printf("Enter the name of the reservation: ");
+            scanf("%d",&referencech);
+            found = 0;
+            for (i = 0; i < bookCount; i++) {
+                if (reference[i] == referencech[0]) {
+                    printf("Nome : %s, prenome : %s, phone number : %s, age : %d, status : %s, date : %s, reference : %d\n",
+                           Nom[i], Prenom[i], Telephone[i],Age[i], Statu[i],Date[i],reference[i]);
+                    found = 1;
+                    break;
+                }
+            }
+}
+           if (!found)
+                printf("reservation not found.\n");
+
+
+}while(choice!=1 && choice!=2);
+
+
+}
+// fonction of statistiques
+void Statistiquesres(){
+
+
+}
+
