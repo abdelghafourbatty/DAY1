@@ -253,6 +253,11 @@ void Statistiquesres(){
 int sum = 0;
 int avg = 0;
 int counter[3];
+int statucounter[4];
+    statucounter[0] = 0;
+    statucounter[1] = 0;
+    statucounter[2] = 0;
+    statucounter[3] = 0;
 int choice;
     printf("1. Calculer la moyenne d age des patients ayant reserve\n");
     printf("2. Afficher le nombre de patients par tranche d age\n");
@@ -277,7 +282,18 @@ int choice;
             }
             printf("  0-18 ans : %d , 19-35 ans : %d , 36+ ans : %d\n",counter[0],counter[1],counter[2]);
         }else if(choice == 3){
-        }
+             for (i = 0; i < reservationCount; i++) {
+        if (strcmp(Statu[i], "valide") == 0 || strcmp(Statu[i], "VALIDE") == 0)
+            statucounter[0]++;
+        else if (strcmp(Statu[i], "reporte") == 0 || strcmp(Statu[i], "REPORTE") == 0)
+            statucounter[1]++;
+        else if (strcmp(Statu[i], "annule") == 0 || strcmp(Statu[i], "ANNULE") == 0)
+            statucounter[2]++;
+        else if (strcmp(Statu[i], "traitre") == 0 || strcmp(Statu[i], "TRAITRE") == 0)
+            statucounter[3]++;
+    }
+        printf("  Valide : %d , Reporte : %d , annule : %d , Traitre : %d \n",statucounter[0],statucounter[1],statucounter[2],statucounter[3]);
+}
 
 }while(choice!=1 && choice!=2 && choice!=3);
 }
